@@ -58,11 +58,11 @@ MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("login-details");
   dbo.collection("users").findOne({"name":req.body.name}, function(err, result) {
-    if (err) {//throw err;
+    if (!result) {//throw err;
 		res.send("wrong username");
 	}
 	else{
-	console.log("else");
+	//console.log(err);
         user_pass=result['pwd'];
         console.log('pass'+user_pass+'pass2'+req.body.pwd);
         console.log(result);
